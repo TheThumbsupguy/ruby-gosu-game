@@ -3,6 +3,8 @@
 require 'sinatra'
 require 'gosu'
 
+
+## game portion ##
 class GameWindow < Gosu::Window
   def initialize
     super(640, 480, false)
