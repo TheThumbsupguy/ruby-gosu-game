@@ -1,13 +1,20 @@
 #!/usr/bin/env ruby
 
 require 'sinatra'
-require "json"
+require 'net/http'
+require 'uri'
+
+helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+end
 
 get '/' do
   erb :main
 end
 
-get '/example.json' do
-  content_type :json
-  { :key1 => 'value1', :key2 => 'value2' }.to_json
+post '/scorePage' do
+  text = erb :scorePage, :locals => {:score => params[:score]}
+  path = File.join(File.dirname(__FILE__), 'public/index.html')
+  File.open( path, 'w') { |f| f.write text }
 end

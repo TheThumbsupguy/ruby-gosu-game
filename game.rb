@@ -2,6 +2,8 @@
 
 require 'sinatra'
 require 'gosu'
+require 'net/http'
+require 'uri'
 
 
 ## game portion ##
@@ -19,9 +21,13 @@ class GameWindow < Gosu::Window
     @stars = Array.new
     
     @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
+    
+    @last_frame = Gosu::milliseconds
   end
 
   def update
+    calculate_delta
+    
     if button_down? Gosu::Button::KbLeft or button_down? Gosu::Button::GpLeft then
       @player.turn_left
     end
@@ -37,6 +43,26 @@ class GameWindow < Gosu::Window
     if rand(100) < 4 and @stars.size < 25 then
       @stars.push(Star.new(@star_anim))
     end
+    
+    ### START TIMER CODE ###
+    
+    if @timer == 5.0 then
+      
+      @end_score = @player.score
+      url = URI.parse('http://127.0.0.1:4567/scorePage')
+      params =  {'score' => @end_score}
+      res = Net::HTTP.post_form(url, params)
+      #puts res.body
+      
+      File.open('public/index.html', 'w') { |f| f.write res.body }
+
+      
+      #close() #closes game
+      
+    end
+    
+    ### END TIMER CODE ###
+    
   end
 
   def draw
@@ -44,12 +70,22 @@ class GameWindow < Gosu::Window
     @player.draw
     @stars.each { |star| star.draw }
     @font.draw("Score: #{@player.score}", 10, 10, ZOrder::UI, 1.0, 1.0, 0xffffff00)
+    @font.draw("Timer: #{@timer}", 300, 10, ZOrder::UI, 1.0, 1.0, 0xffffff00)
+    @font.draw("Post: #{@end_score}", 300, 40, ZOrder::UI, 1.0, 1.0, 0xffffff00)
+    
   end
   
   def button_down(id)
     if id == Gosu::Button::KbEscape
       close
     end
+  end
+  
+  def calculate_delta
+    @this_frame = Gosu::milliseconds
+    @delta = @this_frame - @last_frame
+    @last_frame = @this_frame
+    @timer = (@last_frame / 1000.0).round(1)
   end
 end
 
