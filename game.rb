@@ -9,13 +9,13 @@ require 'uri'
 ## game portion ##
 class GameWindow < Gosu::Window
   def initialize
-    super(640, 480, false)
+    super(800, 480, false)
     self.caption = "Mah Ruby Game"
 
     @background_image = Gosu::Image.new(self, "media/Space.jpg", true)
     
     @player = Player.new(self)
-    @player.warp(320, 240)
+    @player.warp(400, 300)
     
     @star_anim = Gosu::Image::load_tiles(self, "media/Star.png", 25, 25, false)
     @stars = Array.new
@@ -46,18 +46,18 @@ class GameWindow < Gosu::Window
     
     ### START TIMER CODE ###
     
-    if @timer == 5.0 then
+    if @timer == 20.0 then
       
       @end_score = @player.score
-      url = URI.parse('http://127.0.0.1:4567/scorePage')
+      url = URI.parse('http://173.255.220.105:4567/scorePage')
       params =  {'score' => @end_score}
       res = Net::HTTP.post_form(url, params)
       #puts res.body
       
-      File.open('public/index.html', 'w') { |f| f.write res.body }
+      
 
       
-      #close() #closes game
+      close() #closes game
       
     end
     
@@ -69,9 +69,8 @@ class GameWindow < Gosu::Window
     @background_image.draw(0, 0, ZOrder::Background)
     @player.draw
     @stars.each { |star| star.draw }
-    @font.draw("Score: #{@player.score}", 10, 10, ZOrder::UI, 1.0, 1.0, 0xffffff00)
-    @font.draw("Timer: #{@timer}", 300, 10, ZOrder::UI, 1.0, 1.0, 0xffffff00)
-    @font.draw("Post: #{@end_score}", 300, 40, ZOrder::UI, 1.0, 1.0, 0xffffff00)
+    @font.draw("Score: #{@player.score}", 675, 30, ZOrder::UI, 1.0, 1.0, 0xffffff00)
+    @font.draw("Timer: #{@timer}", 675, 10, ZOrder::UI, 1.0, 1.0, 0xffffff00)
     
   end
   
@@ -93,7 +92,7 @@ class Player
   attr_reader :score
   
   def initialize(window)
-    @image = Gosu::Image.new(window, "media/Starfighter.bmp", false)
+    @image = Gosu::Image.new(window, "media/Starfighter.png", false)
     @beep = Gosu::Sample.new(window, "media/Beep.wav")
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
