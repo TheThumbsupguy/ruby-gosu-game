@@ -16,7 +16,7 @@ After 30 seconds, the game will stop and post the score.
 
 You'll need <a href="http://rubyinstaller.org/downloads/">Ruby</a> and <a href="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit">Development Kit</a> installed.
 
-Dependencies: `gem install sinatra`, `gem install gosu`, `gem install data_mapper`.
+Dependencies: `gem install sinatra`, `gem install gosu`, `gem install data_mapper`, `gem install dm-sqlite-adapter`.
 
 Navigate to the game's directory in a terminal window.
 
