@@ -16,7 +16,7 @@ class Score
   
 end
 
-Score.auto_migrate! #unless Score.storage_exists?
+Score.auto_migrate! unless Score.storage_exists?
 
 helpers do
   include Rack::Utils
@@ -31,7 +31,7 @@ end
 
 get '/high-scores' do
 
-  score = Score.first().score
+  score = Score.last().score
   highest = Score.all(:order => [ :score.desc ], :limit => 5)
 
   erb :high_scores, :locals => {:score => score, :highest => highest}

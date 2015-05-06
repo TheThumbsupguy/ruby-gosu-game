@@ -48,9 +48,9 @@ class GameWindow < Gosu::Window
     
     if @timer == 30.0 then
       
-      @end_score = @player.score
+      # Send score to webserver via HTTP 'post' method (scorePage.rb will receive 'params')
       url = URI.parse('http://127.0.0.1:4567/post-score')
-      params =  {:end_score => @end_score}
+      params =  {:end_score => @player.score}
       res = Net::HTTP.post_form(url, params)
       #puts res.body
 
