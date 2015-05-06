@@ -24,8 +24,6 @@ Navigate to the game's directory in a terminal window.
 
 Run `ruby scorePage.rb` to setup the local webserver.
 
-In another terminal window run, `ruby game.rb` to play the game.
+In another terminal window run, `ruby game.rb` to play the game. After the game check your scores. The scores are viewable at <a href="http://127.0.0.1:4567/index.html" target="_blank">127.0.0.1:4567/index.html</a>.
 
 Use `control + c` in the terminal to close the Ruby application. 
-
-The scores are viewable at <a href="http://127.0.0.1:4567/index.html" target="_blank">127.0.0.1:4567/index.html</a>.

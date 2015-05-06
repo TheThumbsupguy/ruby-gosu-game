@@ -10,7 +10,7 @@ require 'uri'
 class GameWindow < Gosu::Window
   def initialize
     super(800, 480, false)
-    self.caption = "Mah Ruby Game"
+    self.caption = "Ruby/Gosu Game"
 
     @background_image = Gosu::Image.new(self, "media/Space.jpg", true)
     
