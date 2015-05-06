@@ -12,11 +12,11 @@ class Score
   include DataMapper::Resource
 
   property :id,         Serial    # An auto-increment integer key
-  property :score,      String    # A varchar type string, for short strings
+  property :score,      Integer   
   
 end
 
-Score.auto_migrate! unless Score.storage_exists?
+Score.auto_migrate! #unless Score.storage_exists?
 
 helpers do
   include Rack::Utils
@@ -29,19 +29,32 @@ get '/' do
   
 end
 
-post '/scorePage' do
-  #current = Score.new
-  #current.attributes = { :score => params[:score] }
-  #current.save
-  #puts current.inspect
-  latest = Score.all(:order => [ :id.desc ], :limit => 2)
-  puts latest.inspect
+get '/high-scores' do
+
+  score = Score.first().score
+  highest = Score.all(:order => [ :score.desc ], :limit => 5)
+
+  erb :high_scores, :locals => {:score => score, :highest => highest}
+
+end
+
+post '/post-score' do
+
+  # Parameters sent from game.rb
+  #puts params 
+
+  # Save new score
+  current = Score.new
+  current.attributes = { :score => params[:end_score] }
+  current.save
+  #puts current.score
+
+  # Note: Old code. Manually created index.html file below. Not sure what I was doing 4 years ago...
+  #highest = Score.all(:order => [ :score.desc ], :limit => 5)
   
-  
-  
-  text = erb :scorePage, :locals => {:score => params[:score], :latest => latest}
-  path = File.join(File.dirname(__FILE__), 'public/index.html')
-  File.open( path, 'w') { |f| f.write text }
+  #text = erb :high_scores, :locals => {:score => params[:score], :highest => highest}
+  #path = File.join(File.dirname(__FILE__), 'public/index.html')
+  #File.open( path, 'w') { |f| f.write text }
 end
 
 

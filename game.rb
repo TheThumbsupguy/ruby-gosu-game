@@ -46,17 +46,14 @@ class GameWindow < Gosu::Window
     
     ### START TIMER CODE ###
     
-    if @timer == 30.0 then
+    if @timer == 5.0 then
       
       @end_score = @player.score
-      url = URI.parse('http://127.0.0.1:4567/scorePage')
-      params =  {'score' => @end_score}
+      url = URI.parse('http://127.0.0.1:4567/post-score')
+      params =  {:end_score => @end_score}
       res = Net::HTTP.post_form(url, params)
       #puts res.body
-      
-      
 
-      
       close() #closes game
       
     end

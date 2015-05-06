@@ -1,0 +1,9 @@
+<p>Last recorded score: <%= score %> </p>
+
+<p>High Scores:</p>
+
+<% count = 0 %>
+
+<% highest.each do |item| %>
+<p><%= count+=1 %>. <%= item.score %></p>
+<% end %>
