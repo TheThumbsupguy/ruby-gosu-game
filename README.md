@@ -20,7 +20,7 @@ Dependencies: `gem install sinatra`, `gem install gosu`, `gem install data_mappe
 
 Navigate to the game's directory in a terminal window.
 
-To start, run `ruby scorePage.rb` to start the local webserver.
+Run `ruby scorePage.rb` to setup the local webserver.
 
 In another terminal window run, `ruby game.rb` to play the game. 
 
