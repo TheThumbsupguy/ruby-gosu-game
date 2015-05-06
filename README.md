@@ -6,11 +6,13 @@ An Asteroids style shooter.
 
 Use arrow keys to move.
 
-## Objective
+## How It Works
 
-You have 30 seconds to collect as many items as possible.
+You have 30 seconds to collect as many hearts as possible.
 
-After 30 seconds, the game will stop and post the score.
+After 30 seconds, the game will stop and post your score to the database file provided.
+
+You will be able to view your scores in a web browser by using Ruby to start a local webserver.
 
 ## Install and Play
 
@@ -22,8 +24,8 @@ Go to <a href="http://sqlite.org/download.html" target="_blank">sqlite.org</a> a
 
 Navigate to the game's directory in a terminal window.
 
-Run `ruby scorePage.rb` to setup the local webserver.
+Run `ruby scorePage.rb` to setup the local webserver. This allows you to check your saved scores at <a href="http://127.0.0.1:4567/high-scores" target="_blank">127.0.0.1:4567/high-scores</a>.
 
-In another terminal window run, `ruby game.rb` to play the game. After the game check your scores. The scores are viewable at <a href="http://127.0.0.1:4567/high-scores" target="_blank">127.0.0.1:4567/high-scores</a>.
+In another terminal window run, `ruby game.rb` to play the game. 
 
 Use `control + c` in the terminal to close the Ruby application. 
