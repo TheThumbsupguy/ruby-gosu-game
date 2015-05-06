@@ -46,7 +46,7 @@ class GameWindow < Gosu::Window
     
     ### START TIMER CODE ###
     
-    if @timer == 5.0 then
+    if @timer == 30.0 then
       
       @end_score = @player.score
       url = URI.parse('http://127.0.0.1:4567/post-score')
