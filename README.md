@@ -1,17 +1,27 @@
 # Ruby Game
 
-An Asteroids style shooter
+An Asteroids style shooter.
 
 ## Controls
 
-Arrow Keys to move
+Use arrow keys to move.
 
 ## Objective
 
-Collect the randomly spawning items for points
+You have 30 seconds to collect as many items as possible.
 
-## Install
+After 30 seconds, the game will stop and post the score.
 
-You'll need ruby installed.
+## Install and Play
 
-Dependencies: `gem install sinatra`, `gem install ruby`
+You'll need <a href="http://rubyinstaller.org/downloads/">Ruby</a> and <a href="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit">Development Kit</a> installed.
+
+Dependencies: `gem install sinatra`, `gem install gosu`, `gem install data_mapper`.
+
+Navigate to the game's directory in a terminal window.
+
+To start, run `ruby scorePage.rb` to start the local webserver.
+
+In another terminal window run, `ruby game.rb` to play the game. 
+
+The scores are viewable at http://127.0.0.1:4567/scorePage.
