@@ -28,4 +28,4 @@ In another terminal window run, `ruby game.rb` to play the game.
 
 Use `control + c` in the terminal to close the Ruby application. 
 
-The scores are viewable at <a href="http://127.0.0.1:4567/scorePage" target="_blank">127.0.0.1:4567/scorePage</a>.
+The scores are viewable at <a href="http://127.0.0.1:4567/index.html" target="_blank">127.0.0.1:4567/index.html</a>.
